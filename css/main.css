@@ -2,5 +2,58 @@ section {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Header Container */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2.4rem;
+  background-color: var(--light-color);
+}
+
+.logo {
+  font-size: 4.4rem;
+  font-weight: bold;
+  background-image: var(--blue-gradient);
+  color: transparent;
+  background-clip: text;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4.8rem;
+}
+
+.nav-link:link,
+.nav-link:visited {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--dark-color);
+  font-weight: 500;
+  font-size: 2.4rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link:active {
+  color: var(--dark-color-2);
+}
+
+.nav-link.cta-link:link,
+.nav-link.cta-link:visited {
+  padding: 1.6rem 3.2rem;
+  border-radius: 15px;
+  color: var(--white-color);
+  background: var(--blue-gradient);
+}
+
+.nav-link.cta-link:hover,
+.nav-link.cta-link:active {
+  background: var(--blue-gradient-2);
 }
