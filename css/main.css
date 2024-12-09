@@ -47,7 +47,7 @@ section {
 
 .nav-link.cta-link:link,
 .nav-link.cta-link:visited {
-  padding: 1.6rem 3.2rem;
+  padding: 1.2rem 4rem;
   border-radius: 15px;
   color: var(--white-color);
   background: var(--blue-gradient);
@@ -55,5 +55,65 @@ section {
 
 .nav-link.cta-link:hover,
 .nav-link.cta-link:active {
+  background: var(--blue-gradient-2);
+}
+
+/* Hero Container */
+.hero {
+  max-width: 100%;
+  position: relative;
+}
+
+.hero-img {
+  width: 100%;
+}
+
+.hero-title {
+  position: absolute;
+  top: 4rem;
+  left: 8rem;
+}
+
+.hero-btn {
+  position: absolute;
+  bottom: 6.4rem;
+  right: 8rem;
+}
+
+.btn-learn:link,
+.btn-learn:visited {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1.2rem 2.4rem;
+  margin-right: 1.2rem;
+  border-radius: 15px;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  font-weight: 500;
+  font-size: 2.4rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-learn:hover,
+.btn-learn:active {
+  background-color: var(--dark-color);
+}
+
+.btn-cta:link,
+.btn-cta:visited {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1.2rem 2.4rem;
+  border-radius: 15px;
+  color: var(--white-color);
+  background: var(--blue-gradient);
+  font-weight: 500;
+  font-size: 2.4rem;
+  cursor: pointer;
+}
+
+.btn-cta:hover,
+.btn-cta:active {
   background: var(--blue-gradient-2);
 }

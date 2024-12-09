@@ -11,12 +11,8 @@
     #022277 50%,
     #0048ff 100%
   );
-  --blue-gradient-2: linear-gradient(
-    135deg,
-    #000000e0 0%,
-    #022277e0 50%,
-    #0048ffe0 100%
-  );
+
+  --blue-gradient-2: linear-gradient(135deg, #000000 0%, #022277 100%);
 }
 
 * {
@@ -34,6 +30,12 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 62.5%; /* 10px = 1rem */
   color: var(--text-color);
+}
+
+.heading-primary {
+  font-size: 3.2rem;
+  font-weight: 300;
+  color: var(--primary-color);
 }
 
 .heading-tertiary {
