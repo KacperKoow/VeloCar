@@ -30,12 +30,21 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 62.5%; /* 10px = 1rem */
   color: var(--text-color);
+  background-color: var(--light-color);
 }
 
 .heading-primary {
   font-size: 3.2rem;
   font-weight: 300;
   color: var(--primary-color);
+}
+
+.heading-secondary {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--text-color);
+  padding-top: 1.2rem;
+  margin-bottom: 3.2rem;
 }
 
 .heading-tertiary {

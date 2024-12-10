@@ -1,8 +1,12 @@
 section {
+  margin-bottom: 9.6rem;
+}
+
+.container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 2rem;
+  padding: 0 3.2rem;
 }
 
 /* Header Container */
@@ -116,4 +120,11 @@ section {
 .btn-cta:hover,
 .btn-cta:active {
   background: var(--blue-gradient-2);
+}
+
+/* About us Container */
+.about-description {
+  font-weight: 500;
+  font-size: 3.6rem;
+  color: var(--dark-color-2);
 }
