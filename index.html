@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VeloCar</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,6 +14,15 @@
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <title>VeloCar</title>
   </head>
   <body>
     <!-- Header Section -->
@@ -54,13 +62,85 @@
     <!-- About Us Section -->
     <section class="about-section" id="about">
       <div class="container">
-        <h2 class="heading-secondary">About Us</h2>
-        <p class="about-description">
+        <span class="subheading">About Us</span>
+        <h2 class="heading-secondary">
           At VeloCar, we make car rentals quick, easy, and affordable. Whether
           you need a compact car for city driving, a family SUV for the weekend,
           or a luxury vehicle for a special occasion – we’ve got the perfect
           ride for you.
-        </p>
+        </h2>
+      </div>
+    </section>
+
+    <!-- How it works Section -->
+    <section class="how-section">
+      <div class="container">
+        <span class="subheading">How it works</span>
+        <h2 class="heading-secondary">
+          Renting a car with VeloCar is quick, easy, and hassle-free. Just
+          follow these simple steps
+        </h2>
+      </div>
+      <div class="container white-container grid grid--how">
+        <div class="how-img-box">
+          <img
+            src="img/how-section.jpg"
+            class="step-img"
+            alt="iPhone app
+                  delivery screen"
+          />
+        </div>
+        <div class="step-text-box">
+          <div class="step-title">
+            <ion-icon class="step-icon" name="search-outline"></ion-icon>
+            <h3 class="heading-tertiary">Browse Our Fleet</h3>
+          </div>
+          <p class="step-description">
+            Explore our wide selection of vehicles, from compact city cars to
+            luxury sedans and spacious SUVs. Use filters to find the perfect
+            ride for your needs.
+          </p>
+          <div class="step-title">
+            <ion-icon class="step-icon" name="calendar-outline"></ion-icon>
+            <h3 class="heading-tertiary">Select Your Dates</h3>
+          </div>
+          <p class="step-description">
+            Choose the pickup and return dates that suit your schedule. We offer
+            flexible rental periods – whether you need a car for a day, a
+            weekend, or longer.
+          </p>
+          <div class="step-title">
+            <ion-icon class="step-icon" name="checkbox-outline"></ion-icon>
+            <h3 class="heading-tertiary">Reserve Online</h3>
+          </div>
+          <p class="step-description">
+            Complete your booking in just a few clicks. Enter your information,
+            choose any optional extras (like GPS or child seats), and confirm
+            your reservation.
+          </p>
+          <div class="step-title">
+            <ion-icon class="step-icon" name="key-outline"></ion-icon>
+            <h3 class="heading-tertiary">Pick Up Your Car</h3>
+          </div>
+          <p class="step-description">
+            Visit our location or request delivery to your doorstep. Our team
+            will have your vehicle ready to go, clean, and fueled up for your
+            trip.
+          </p>
+          <div class="step-title">
+            <ion-icon
+              class="step-icon"
+              class="step-icon"
+              name="car-sport-outline"
+            ></ion-icon>
+            <h3 class="heading-tertiary">Enjoy the Ride</h3>
+          </div>
+          <p class="step-description">
+            Drive with confidence, knowing our customer support is available
+            24/7. When you're done, drop the car off at our location or arrange
+            a pickup. Simple as that!
+          </p>
+        </div>
       </div>
     </section>
 
