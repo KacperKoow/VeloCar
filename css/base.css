@@ -33,13 +33,13 @@ body {
   background-color: var(--light-color);
 }
 
-section {
-  margin-bottom: 9.6rem;
+.section {
+  padding: 9.6rem 0;
 }
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -75,6 +75,10 @@ section {
   display: grid;
   column-gap: 6.4rem;
   row-gap: 9.6rem;
+}
+
+.grid--2-cols {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .white-container {

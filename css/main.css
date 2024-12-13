@@ -112,16 +112,19 @@
 }
 
 /* About us Container */
+.about-section {
+  background-color: var(--white-color);
+}
+
 .about-description {
   font-weight: 500;
   font-size: 3.6rem;
   color: var(--dark-color-2);
 }
 
-/* About it works Container */
-
+/* How it works Container */
 .grid--how {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 3fr;
 }
 
 .step-img {
@@ -137,6 +140,7 @@
   display: flex;
   align-items: center;
   gap: 1.6rem;
+  margin-bottom: 1.6rem;
 }
 
 .step-icon {
@@ -148,4 +152,31 @@
   font-size: 1.8rem;
   line-height: 1.8;
   margin-bottom: 2.4rem;
+}
+
+/* Car types Container */
+.car-types-section {
+  background-color: var(--white-color);
+}
+.car-type-img-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.car-type-img {
+  width: 90%;
+  border-radius: 15px;
+}
+
+.car-type-text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 3.2rem;
+}
+
+.car-type-description {
+  font-size: 2rem;
+  line-height: 1.8;
+  margin: 1.6rem 0 2.4rem;
 }
