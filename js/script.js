@@ -86,3 +86,18 @@ for (let i = 0; i < slideContainer.length; i++) {
   };
   slider();
 }
+
+// Faq
+document.querySelectorAll(".faq-question").forEach((button) => {
+  button.addEventListener("click", () => {
+    const answer = button.nextElementSibling;
+    const iconDown = button.querySelector(
+      'ion-icon[name="chevron-down-outline"]'
+    );
+    const iconUp = button.querySelector('ion-icon[name="chevron-up-outline"]');
+
+    answer.classList.toggle("active");
+    iconDown.classList.toggle("hidden");
+    iconUp.classList.toggle("hidden");
+  });
+});
