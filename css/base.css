@@ -81,6 +81,10 @@ body {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.grid--3-cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .white-container {
   background-color: var(--white-color);
   overflow: hidden;

@@ -182,11 +182,17 @@
 }
 
 /* Our Fleet Container */
+.cars {
+  margin-bottom: 8rem;
+}
+
+.cars:last-child {
+  margin-bottom: 0;
+}
 .slider {
   max-width: 125rem;
   height: 40rem;
   margin: 0 auto;
-  margin-bottom: 8rem;
   position: relative;
 
   overflow: hidden;
@@ -289,4 +295,42 @@
 .dots__dot--active {
   background-color: #888;
   opacity: 1;
+}
+
+/* Services Container */
+.services-section {
+  background-color: var(--white-color);
+}
+
+.service {
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.service-img {
+  width: 100%;
+  height: 22rem;
+  object-fit: cover;
+}
+
+.service-text-box {
+  padding: 3.2rem 4.8rem 4.8rem 4.8rem;
+}
+
+.service-title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 2.4rem;
+}
+
+.service-attributes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.service-attribute {
+  font-size: 1.8rem;
 }
