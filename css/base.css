@@ -4,15 +4,16 @@
   --dark-color: #228be6;
   --dark-color-2: #1864ab;
   --text-color: #333;
+  --grey-color: #444;
   --white-color: #fff;
   --blue-gradient: linear-gradient(
     135deg,
-    #000000 0%,
-    #022277 50%,
-    #0048ff 100%
+    #1864ab 0%,
+    #339af0 50%,
+    #e7f5ff 100%
   );
 
-  --blue-gradient-2: linear-gradient(135deg, #000000 0%, #022277 100%);
+  --blue-gradient-2: linear-gradient(135deg, #1864ab 0%, #e7f5ff 100%);
 }
 
 * {
