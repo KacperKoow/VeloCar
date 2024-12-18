@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 9vh;
   padding: 1.2rem 2.4rem;
   background-color: var(--light-color);
 }
@@ -58,19 +59,25 @@
 }
 
 .hero-img {
-  width: 100%;
+  height: 91vh;
+  width: 100vw;
+  background-image: url("../img/hero.jpg");
+  background-size: cover;
+  background-position: bottom;
 }
 
 .hero-title {
   position: absolute;
-  top: 4rem;
+  font-size: 3.6rem;
+  font-weight: 400;
+  top: 2rem;
   left: 8rem;
 }
 
 .hero-btn {
   position: absolute;
   bottom: 6.4rem;
-  right: 8rem;
+  right: 5rem;
 }
 
 .btn-learn:link,
@@ -399,7 +406,6 @@
 }
 
 .logo-footer {
-  font-size: 3.6rem;
   margin-bottom: 3.2rem;
 }
 .social-links {

@@ -10,10 +10,10 @@
     135deg,
     #1864ab 0%,
     #339af0 50%,
-    #e7f5ff 100%
+    #a5d8ff 100%
   );
 
-  --blue-gradient-2: linear-gradient(135deg, #1864ab 0%, #e7f5ff 100%);
+  --blue-gradient-2: linear-gradient(135deg, #1864ab 0%, #a5d8ff 100%);
 }
 
 * {
