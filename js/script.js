@@ -1,3 +1,31 @@
+// Sticky navigation
+const sectionHeroEl = document.querySelector(".hero");
+const navHeight = document
+  .querySelector(".nav-container")
+  .getBoundingClientRect().height;
+
+const obs = new IntersectionObserver(
+  function (entries) {
+    const [ent] = entries;
+
+    if (!ent.isIntersecting) {
+      document.body.classList.add("sticky");
+    }
+
+    if (ent.isIntersecting) {
+      document.body.classList.remove("sticky");
+    }
+  },
+  {
+    // In the viewport
+    root: null,
+    threshold: 0,
+    rootMargin: `-${navHeight}px`,
+  }
+);
+obs.observe(sectionHeroEl);
+
+//Fleet
 const slideContainer = document.querySelectorAll(".slider");
 
 for (let i = 0; i < slideContainer.length; i++) {

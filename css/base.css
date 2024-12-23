@@ -1,10 +1,12 @@
 :root {
   --primary-color: #339af0;
   --light-color: #e7f5ff;
+  --light-color-2: #a5d8ff;
   --dark-color: #228be6;
   --dark-color-2: #1864ab;
   --text-color: #333;
   --grey-color: #444;
+  --light-gray-color: #b9b9b9;
   --white-color: #fff;
   --blue-gradient: linear-gradient(
     135deg,
@@ -13,13 +15,21 @@
     #a5d8ff 100%
   );
 
-  --blue-gradient-2: linear-gradient(135deg, #1864ab 0%, #a5d8ff 100%);
+  --blue-gradient-2: linear-gradient(
+    135deg,
+    #0a2844 0%,
+    #1a4d78 50%,
+    #7397b3 100%
+  );
+
+  --shadow: rgba(0, 0, 0, 0.2);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  scroll-behavior: smooth;
 }
 
 html {
