@@ -26,6 +26,48 @@ const obs = new IntersectionObserver(
 obs.observe(sectionHeroEl);
 
 //Fleet
+const carPrices = {
+  "BMW 7 Series": 120,
+  "Audi A8": 115,
+  "Mercedes-Benz S-Class": 130,
+  "Porsche Panamera": 140,
+  "Lexus LS": 125,
+  "Toyota RAV4": 80,
+  "Ford Explorer": 90,
+  "Hyundai Tucson": 85,
+  "Volvo XC60": 100,
+  "Nissan X-Trail": 95,
+  "Toyota Yaris": 50,
+  "Volkswagen Polo": 45,
+  "Honda Civic": 55,
+  "Ford Fiesta": 50,
+  "Renault Clio": 40,
+};
+
+const addonPrices = {
+  "child-seat": 20,
+  "car-insurance": 50,
+  "roof-box": 30,
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const carModels = document.querySelectorAll(".car-model");
+
+  carModels.forEach((carModelElement) => {
+    const carName = carModelElement.textContent.trim();
+
+    const carPrice = carPrices[carName];
+
+    if (carPrice) {
+      const priceElement = carModelElement
+        .closest(".car-specification")
+        .querySelector(".price");
+
+      priceElement.textContent = `Daily Rental Price: $${carPrice}`;
+    }
+  });
+});
+
 const slideContainer = document.querySelectorAll(".slider");
 
 for (let i = 0; i < slideContainer.length; i++) {
@@ -132,30 +174,6 @@ document.querySelectorAll(".faq-question").forEach((button) => {
 
 //form
 
-const carPrices = {
-  "BMW 7 Series": 120,
-  "Audi A8": 115,
-  "Mercedes-Benz S-Class": 130,
-  "Porsche Panamera": 140,
-  "Lexus LS": 125,
-  "Toyota RAV4": 80,
-  "Ford Explorer": 90,
-  "Hyundai Tucson": 85,
-  "Volvo XC60": 100,
-  "Nissan X-Trail": 95,
-  "Toyota Yaris": 50,
-  "Volkswagen Polo": 45,
-  "Honda Civic": 55,
-  "Ford Fiesta": 50,
-  "Renault Clio": 40,
-};
-
-const addonPrices = {
-  "child-seat": 20,
-  "car-insurance": 50,
-  "roof-box": 30,
-};
-
 const overlay = document.querySelector(".overlay");
 const closeIcon = document.querySelector(".close-icon");
 const btnForm = document.querySelectorAll(".btn-form");
@@ -239,7 +257,6 @@ const calculateTotalPrice = () => {
   const carPricePerDay = carPrices[carModel];
   let totalPrice = days * carPricePerDay;
 
-  // Uwzględnij dodatki
   Object.keys(addonPrices).forEach((addonId) => {
     const addonCheckbox = document.getElementById(addonId);
     if (addonCheckbox && addonCheckbox.checked) {
