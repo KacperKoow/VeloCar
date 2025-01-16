@@ -983,56 +983,65 @@
     <div class="overlay hidden">
       <form class="form-container">
         <ion-icon name="close-outline" class="close-icon"></ion-icon>
-        <h2 class="form-title">Your Reservation</h2>
+        <div class="form">
+          <h2 class="form-title">Your Reservation</h2>
 
-        <div class="form-grid">
-          <h3 class="form-section-title">Vehicle Model</h3>
-          <p class="form-model-name">[Selected Car Model]</p>
+          <div class="form-grid">
+            <h3 class="form-section-title">Vehicle Model</h3>
+            <p class="form-model-name">[Selected Car Model]</p>
+          </div>
+
+          <h3 class="form-section-title">Your Details</h3>
+          <div class="form-grid">
+            <label for="name">Name</label>
+            <label for="surname">Surname</label>
+            <input type="text" id="name" name="name" required />
+
+            <input type="text" id="surname" name="surname" required />
+            <label for="email">Email</label>
+            <label for="phone">Phone Number</label>
+            <input type="email" id="email" name="email" required />
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <h3 class="form-section-title">Rental Dates</h3>
+          <div class="form-grid">
+            <label for="start-date" class="form-label">Start Date</label>
+            <label for="end-date" class="form-label">End Date</label>
+            <input type="date" id="start-date" class="form-input" />
+            <input type="date" id="end-date" class="form-input" />
+          </div>
+
+          <h3 class="form-section-title">Services</h3>
+          <div class="form-checkboxes">
+            <label
+              ><input type="checkbox" class="form-checkbox" id="child-seat" />
+              Child Seat - $20
+            </label>
+            <label>
+              <input type="checkbox" class="form-checkbox" id="car-insurance" />
+              Full Insurance Coverage - $50
+            </label>
+            <label>
+              <input type="checkbox" class="form-checkbox" id="roof-box" />
+              Roof Box - $30
+            </label>
+          </div>
+
+          <div class="form-grid">
+            <h3 class="form-section-title">Total Price</h3>
+            <p class="total-price">$0</p>
+          </div>
+
+          <button type="submit" class="btn-submit">Confirm Reservation</button>
         </div>
-
-        <h3 class="form-section-title">Your Details</h3>
-        <div class="form-grid">
-          <label for="name">Name</label>
-          <label for="surname">Surname</label>
-          <input type="text" id="name" name="name" required />
-
-          <input type="text" id="surname" name="surname" required />
-          <label for="email">Email</label>
-          <label for="phone">Phone Number</label>
-          <input type="email" id="email" name="email" required />
-          <input type="tel" id="phone" name="phone" required />
+        <div class="submit-massage hidden">
+          <h2 class="massage-title">Thank You for Your Reservation!</h2>
+          <p class="thank-you-message">
+            Your reservation has been successfully submitted.
+          </p>
+          <button class="btn-return">Return to the Fleet</button>
         </div>
-
-        <h3 class="form-section-title">Rental Dates</h3>
-        <div class="form-grid">
-          <label for="start-date" class="form-label">Start Date</label>
-          <label for="end-date" class="form-label">End Date</label>
-          <input type="date" id="start-date" class="form-input" />
-          <input type="date" id="end-date" class="form-input" />
-        </div>
-
-        <h3 class="form-section-title">Services</h3>
-        <div class="form-checkboxes">
-          <label
-            ><input type="checkbox" class="form-checkbox" id="child-seat" />
-            Child Seat - $20
-          </label>
-          <label>
-            <input type="checkbox" class="form-checkbox" id="car-insurance" />
-            Full Insurance Coverage - $50
-          </label>
-          <label>
-            <input type="checkbox" class="form-checkbox" id="roof-box" />
-            Roof Box - $30
-          </label>
-        </div>
-
-        <div class="form-grid">
-          <h3 class="form-section-title">Total Price</h3>
-          <p class="total-price">$0</p>
-        </div>
-
-        <button class="btn-submit">Confirm Reservation</button>
       </form>
     </div>
   </body>

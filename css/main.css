@@ -388,7 +388,6 @@
 
 /* FAQ Container */
 .faq-list {
-  max-width: 100rem;
   list-style: none;
   margin: 0 auto;
 }
@@ -428,10 +427,6 @@
 
 .active {
   max-height: 30rem;
-}
-
-.hidden {
-  display: none;
 }
 
 /* Footer Container */
@@ -521,7 +516,9 @@
   z-index: 999;
 }
 
-.hidden {
+.hidden,
+.form.hidden,
+.submit-massage.hidden {
   display: none;
 }
 
@@ -536,6 +533,10 @@
   width: 60rem;
 
   z-index: 1000;
+}
+
+.form,
+.submit-massage {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -556,16 +557,21 @@
   cursor: pointer;
 }
 
-.form-title {
+.form-title,
+.massage-title {
   text-align: center;
   font-size: 3.6rem;
 }
 
-.form-section-title {
+.form-section-title,
+.thank-you-message {
   font-size: 2.4rem;
   color: var(--text-color);
 }
 
+.thank-you-message {
+  text-align: center;
+}
 label,
 .form-model-name,
 .total-price {
@@ -597,7 +603,8 @@ input[type="checkbox"] {
   margin-right: 0.8rem;
 }
 
-.btn-submit {
+.btn-submit,
+.btn-return {
   background: var(--primary-color);
   color: var(--white-color);
   padding: 1rem 2rem;
@@ -608,6 +615,7 @@ input[type="checkbox"] {
   transition: background 0.3s;
 }
 
-.btn-submit:hover {
+.btn-submit:hover,
+.btn-return:hover {
   background: var(--dark-color);
 }

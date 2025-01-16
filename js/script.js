@@ -17,7 +17,6 @@ const obs = new IntersectionObserver(
     }
   },
   {
-    // In the viewport
     root: null,
     threshold: 0,
     rootMargin: `-${navHeight}px`,
@@ -179,9 +178,14 @@ const closeIcon = document.querySelector(".close-icon");
 const btnForm = document.querySelectorAll(".btn-form");
 const formContainer = document.querySelector(".form-container");
 const formModelName = document.querySelector(".form-model-name");
+const form = document.querySelector(".form");
+const submitMassage = document.querySelector(".submit-massage");
+const returnButton = document.querySelector(".btn-return");
+const addonCheckboxes = document.querySelectorAll(".form-checkbox");
 
 btnForm.forEach((btn) => {
-  btn.addEventListener("click", (event) => {
+  btn.addEventListener("click", () => {
+    init();
     const carModel = btn
       .closest(".car-description")
       .querySelector(".car-model").textContent;
@@ -207,23 +211,21 @@ overlay.addEventListener("click", (event) => {
   }
 });
 
+const startDateInput = document.getElementById("start-date");
+const endDateInput = document.getElementById("end-date");
+const setTomorrowAsMinDate = (input, isEnd = false) => {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  if (isEnd) {
+    tomorrow.setDate(today.getDate() + 2);
+  } else {
+    tomorrow.setDate(today.getDate() + 1);
+  }
+  const minDate = tomorrow.toISOString().split("T")[0];
+  input.min = minDate;
+  input.value = minDate;
+};
 document.addEventListener("DOMContentLoaded", () => {
-  const startDateInput = document.getElementById("start-date");
-  const endDateInput = document.getElementById("end-date");
-
-  const setTomorrowAsMinDate = (input, isEnd = false) => {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    if (isEnd) {
-      tomorrow.setDate(today.getDate() + 2);
-    } else {
-      tomorrow.setDate(today.getDate() + 1);
-    }
-    const minDate = tomorrow.toISOString().split("T")[0];
-    input.min = minDate;
-    input.value = minDate;
-  };
-
   setTomorrowAsMinDate(startDateInput);
   setTomorrowAsMinDate(endDateInput, true);
 
@@ -251,7 +253,6 @@ const calculateTotalPrice = () => {
   const carModel = formModelName.textContent.trim();
   const startDate = document.getElementById("start-date").value;
   const endDate = document.getElementById("end-date").value;
-  console.log(carModel, startDate, endDate);
 
   const days = calculateDays(startDate, endDate);
   const carPricePerDay = carPrices[carModel];
@@ -271,7 +272,6 @@ const calculateTotalPrice = () => {
 document.addEventListener("DOMContentLoaded", () => {
   const startDateInput = document.getElementById("start-date");
   const endDateInput = document.getElementById("end-date");
-  const addonCheckboxes = document.querySelectorAll(".form-checkbox");
 
   startDateInput.addEventListener("change", calculateTotalPrice);
   endDateInput.addEventListener("change", calculateTotalPrice);
@@ -279,3 +279,31 @@ document.addEventListener("DOMContentLoaded", () => {
     checkbox.addEventListener("change", calculateTotalPrice);
   });
 });
+
+formContainer.addEventListener("submit", (event) => {
+  submitMassage.classList.remove("hidden");
+  form.classList.add("hidden");
+  event.preventDefault();
+});
+
+returnButton.addEventListener("click", () => {
+  overlay.classList.add("hidden");
+  document.body.style.overflow = "";
+});
+
+const init = () => {
+  document.querySelector("#name").value = "";
+  document.querySelector("#surname").value = "";
+  document.querySelector("#email").value = "";
+  document.querySelector("#phone").value = "";
+
+  setTomorrowAsMinDate(startDateInput);
+  setTomorrowAsMinDate(endDateInput, true);
+
+  submitMassage.classList.add("hidden");
+  form.classList.remove("hidden");
+
+  addonCheckboxes.forEach((checkbox) => {
+    checkbox.checked = false;
+  });
+};
