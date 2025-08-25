@@ -4,27 +4,13 @@ const navHeight = document
   .querySelector(".nav-container")
   .getBoundingClientRect().height;
 
-const obs = new IntersectionObserver(
-  function (entries) {
-    const [ent] = entries;
-
-    if (!ent.isIntersecting) {
-      document.body.classList.add("sticky");
-    }
-
-    if (ent.isIntersecting) {
-      document.body.classList.remove("sticky");
-    }
-  },
-  {
-    root: null,
-    threshold: 0,
-    rootMargin: `-${navHeight}px`,
-  }
-);
-obs.observe(sectionHeroEl);
+new IntersectionObserver(
+  ([entry]) => document.body.classList.toggle("sticky", !entry.isIntersecting),
+  { root: null, threshold: 0, rootMargin: `-${navHeight}px` }
+).observe(sectionHeroEl);
 
 //Fleet
+
 const carPrices = {
   "BMW 7 Series": 120,
   "Audi A8": 115,
@@ -50,198 +36,118 @@ const addonPrices = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const carModels = document.querySelectorAll(".car-model");
-
-  carModels.forEach((carModelElement) => {
+  document.querySelectorAll(".car-model").forEach((carModelElement) => {
     const carName = carModelElement.textContent.trim();
+    const priceElement = carModelElement
+      .closest(".car-specification")
+      ?.querySelector(".price");
 
-    const carPrice = carPrices[carName];
-
-    if (carPrice) {
-      const priceElement = carModelElement
-        .closest(".car-specification")
-        .querySelector(".price");
-
-      priceElement.textContent = `Daily Rental Price: $${carPrice}`;
+    if (priceElement && carPrices[carName]) {
+      priceElement.textContent = `Daily Rental Price: $${carPrices[carName]}`;
     }
   });
 });
 
-const slideContainer = document.querySelectorAll(".slider");
+// Slider
+const sliders = document.querySelectorAll(".slider");
 
-for (let i = 0; i < slideContainer.length; i++) {
-  // Slider
-  const slider = function () {
-    const slides = slideContainer[i].querySelectorAll(".slide");
-    const btnLeft = slideContainer[i].querySelector(".slider__btn--left");
-    const btnRight = slideContainer[i].querySelector(".slider__btn--right");
-    const dotContainer = slideContainer[i].querySelector(".dots");
+sliders.forEach((container) => {
+  const slides = container.querySelectorAll(".slide");
+  const btnLeft = container.querySelector(".slider__btn--left");
+  const btnRight = container.querySelector(".slider__btn--right");
+  const dotContainer = container.querySelector(".dots");
 
-    let curSlide = 0;
-    const maxSlide = slides.length;
+  let curSlide = 0;
+  const maxSlide = slides.length;
 
-    // Functions
-    const createDots = function () {
-      slides.forEach(function (_, i) {
-        dotContainer.insertAdjacentHTML(
-          "beforeend",
-          `<button class="dots__dot" data-slide="${i}"></button>`
-        );
-      });
-    };
-
-    const activateDot = function (slide) {
-      slideContainer[i]
-        .querySelectorAll(".dots__dot")
-        .forEach((dot) => dot.classList.remove("dots__dot--active"));
-
-      slideContainer[i]
-        .querySelector(`.dots__dot[data-slide="${slide}"]`)
-        .classList.add("dots__dot--active");
-    };
-
-    const goToSlide = function (slide) {
-      slides.forEach(
-        (s, i) => (s.style.transform = `translate(${100 * (i - slide)}%)`)
+  const createDots = () => {
+    slides.forEach((_, i) => {
+      dotContainer.insertAdjacentHTML(
+        "beforeend",
+        `<button class="dots__dot" data-slide="${i}"></button>`
       );
-    };
-
-    // Next slide
-    const nextSlide = function () {
-      if (curSlide === maxSlide - 1) {
-        curSlide = 0;
-      } else {
-        curSlide++;
-      }
-
-      goToSlide(curSlide);
-      activateDot(curSlide);
-    };
-
-    const prevSlide = function () {
-      if (curSlide === 0) {
-        curSlide = maxSlide - 1;
-      } else {
-        curSlide--;
-      }
-      goToSlide(curSlide);
-      activateDot(curSlide);
-    };
-
-    const init = function () {
-      goToSlide(0);
-      createDots();
-
-      activateDot(0);
-    };
-    init();
-
-    // Event handlers
-    btnRight.addEventListener("click", nextSlide);
-    btnLeft.addEventListener("click", prevSlide);
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") prevSlide();
-      e.key === "ArrowRight" && nextSlide();
-    });
-
-    dotContainer.addEventListener("click", function (e) {
-      if (e.target.classList.contains("dots__dot")) {
-        const { slide } = e.target.dataset;
-        goToSlide(slide);
-        activateDot(slide);
-      }
     });
   };
-  slider();
-}
 
-// Faq
-document.querySelectorAll(".faq-question").forEach((button) => {
-  button.addEventListener("click", () => {
-    const answer = button.nextElementSibling;
-    const iconDown = button.querySelector(
-      'ion-icon[name="chevron-down-outline"]'
+  const activateDot = (slide) => {
+    dotContainer
+      .querySelectorAll(".dots__dot")
+      .forEach((dot) => dot.classList.remove("dots__dot--active"));
+    dotContainer
+      .querySelector(`[data-slide="${slide}"]`)
+      .classList.add("dots__dot--active");
+  };
+
+  const goToSlide = (slide) => {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translate(${100 * (i - slide)}%)`)
     );
-    const iconUp = button.querySelector('ion-icon[name="chevron-up-outline"]');
+  };
 
-    answer.classList.toggle("active");
-    iconDown.classList.toggle("hidden");
-    iconUp.classList.toggle("hidden");
+  const nextSlide = () => {
+    curSlide = curSlide === maxSlide - 1 ? 0 : curSlide + 1;
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+
+  const prevSlide = () => {
+    curSlide = curSlide === 0 ? maxSlide - 1 : curSlide - 1;
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+
+  const init = () => {
+    goToSlide(0);
+    createDots();
+    activateDot(0);
+  };
+  init();
+
+  btnRight.addEventListener("click", nextSlide);
+  btnLeft.addEventListener("click", prevSlide);
+  dotContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("dots__dot")) {
+      const { slide } = e.target.dataset;
+      goToSlide(slide);
+      activateDot(slide);
+    }
   });
 });
 
-//form
+// Faq
+const faqContainer = document.querySelector(".faq-list");
+faqContainer.addEventListener("click", (e) => {
+  const btn = e.target.closest(".faq-question");
+  if (!btn) return;
+  btn.nextElementSibling.classList.toggle("active");
+  btn
+    .querySelectorAll("ion-icon")
+    .forEach((icon) => icon.classList.toggle("hidden"));
+});
 
+//Form
+
+const btnForm = document.querySelectorAll(".btn-form");
 const overlay = document.querySelector(".overlay");
 const closeIcon = document.querySelector(".close-icon");
-const btnForm = document.querySelectorAll(".btn-form");
 const formContainer = document.querySelector(".form-container");
 const formModelName = document.querySelector(".form-model-name");
 const form = document.querySelector(".form");
-const submitMassage = document.querySelector(".submit-massage");
+const submitMessage = document.querySelector(".submit-massage");
 const returnButton = document.querySelector(".btn-return");
 const addonCheckboxes = document.querySelectorAll(".form-checkbox");
-
-btnForm.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    init();
-    const carModel = btn
-      .closest(".car-description")
-      .querySelector(".car-model").textContent;
-
-    formModelName.textContent = carModel;
-
-    overlay.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
-
-    calculateTotalPrice();
-  });
-});
-
-closeIcon.addEventListener("click", () => {
-  overlay.classList.add("hidden");
-  document.body.style.overflow = "";
-});
-
-overlay.addEventListener("click", (event) => {
-  if (!formContainer.contains(event.target)) {
-    overlay.classList.add("hidden");
-    document.body.style.overflow = "";
-  }
-});
-
 const startDateInput = document.getElementById("start-date");
 const endDateInput = document.getElementById("end-date");
+const totalPriceElement = document.querySelector(".total-price");
+
 const setTomorrowAsMinDate = (input, isEnd = false) => {
   const today = new Date();
   const tomorrow = new Date(today);
-  if (isEnd) {
-    tomorrow.setDate(today.getDate() + 2);
-  } else {
-    tomorrow.setDate(today.getDate() + 1);
-  }
+  tomorrow.setDate(today.getDate() + (isEnd ? 2 : 1));
   const minDate = tomorrow.toISOString().split("T")[0];
   input.min = minDate;
   input.value = minDate;
 };
-document.addEventListener("DOMContentLoaded", () => {
-  setTomorrowAsMinDate(startDateInput);
-  setTomorrowAsMinDate(endDateInput, true);
-
-  startDateInput.addEventListener("change", () => {
-    const selectedStartDate = new Date(startDateInput.value);
-    const minEndDate = new Date(selectedStartDate);
-    minEndDate.setDate(selectedStartDate.getDate() + 1);
-
-    const minDateString = minEndDate.toISOString().split("T")[0];
-    endDateInput.min = minDateString;
-
-    if (new Date(endDateInput.value) < minEndDate) {
-      endDateInput.value = minDateString;
-    }
-  });
-});
 
 const calculateDays = (startDate, endDate) => {
   const start = new Date(startDate);
@@ -251,47 +157,20 @@ const calculateDays = (startDate, endDate) => {
 
 const calculateTotalPrice = () => {
   const carModel = formModelName.textContent.trim();
-  const startDate = document.getElementById("start-date").value;
-  const endDate = document.getElementById("end-date").value;
+  const days = calculateDays(startDateInput.value, endDateInput.value);
+  const carPricePerDay = carPrices[carModel] || 0;
 
-  const days = calculateDays(startDate, endDate);
-  const carPricePerDay = carPrices[carModel];
-  let totalPrice = days * carPricePerDay;
+  const addonsCost = Object.entries(addonPrices).reduce(
+    (sum, [addonId, price]) => {
+      return sum + (document.getElementById(addonId)?.checked ? price : 0);
+    },
+    0
+  );
 
-  Object.keys(addonPrices).forEach((addonId) => {
-    const addonCheckbox = document.getElementById(addonId);
-    if (addonCheckbox && addonCheckbox.checked) {
-      totalPrice += addonPrices[addonId];
-    }
-  });
-
-  const totalPriceElement = document.querySelector(".total-price");
-  totalPriceElement.textContent = `$${totalPrice}`;
+  totalPriceElement.textContent = `$${days * carPricePerDay + addonsCost}`;
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const startDateInput = document.getElementById("start-date");
-  const endDateInput = document.getElementById("end-date");
-
-  startDateInput.addEventListener("change", calculateTotalPrice);
-  endDateInput.addEventListener("change", calculateTotalPrice);
-  addonCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", calculateTotalPrice);
-  });
-});
-
-formContainer.addEventListener("submit", (event) => {
-  submitMassage.classList.remove("hidden");
-  form.classList.add("hidden");
-  event.preventDefault();
-});
-
-returnButton.addEventListener("click", () => {
-  overlay.classList.add("hidden");
-  document.body.style.overflow = "";
-});
-
-const init = () => {
+const resetForm = () => {
   document.querySelector("#name").value = "";
   document.querySelector("#surname").value = "";
   document.querySelector("#email").value = "";
@@ -300,10 +179,95 @@ const init = () => {
   setTomorrowAsMinDate(startDateInput);
   setTomorrowAsMinDate(endDateInput, true);
 
-  submitMassage.classList.add("hidden");
+  submitMessage.classList.add("hidden");
   form.classList.remove("hidden");
 
   addonCheckboxes.forEach((checkbox) => {
     checkbox.checked = false;
   });
 };
+
+// Event Handlers
+const openForm = (event) => {
+  resetForm();
+
+  const carModel = event.target
+    .closest(".car-description")
+    .querySelector(".car-model").textContent;
+
+  formModelName.textContent = carModel;
+
+  overlay.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+
+  calculateTotalPrice();
+};
+
+const closeForm = () => {
+  overlay.classList.add("hidden");
+  document.body.style.overflow = "";
+};
+
+const overlayClick = (event) => {
+  if (!formContainer.contains(event.target)) {
+    closeForm();
+  }
+};
+
+const startDateChange = () => {
+  const selectedStartDate = new Date(startDateInput.value);
+  const minEndDate = new Date(selectedStartDate);
+  minEndDate.setDate(selectedStartDate.getDate() + 1);
+
+  const minDateString = minEndDate.toISOString().split("T")[0];
+  endDateInput.min = minDateString;
+
+  if (new Date(endDateInput.value) < minEndDate) {
+    endDateInput.value = minDateString;
+  }
+
+  calculateTotalPrice();
+};
+
+const endDateChange = () => {
+  calculateTotalPrice();
+};
+
+const addonChange = () => {
+  calculateTotalPrice();
+};
+
+const formSubmit = (event) => {
+  event.preventDefault();
+  submitMessage.classList.remove("hidden");
+  form.classList.add("hidden");
+};
+
+const returnButtonClick = () => {
+  closeForm();
+};
+
+const addEventListeners = () => {
+  btnForm.forEach((btn) => {
+    btn.addEventListener("click", openForm);
+  });
+
+  closeIcon.addEventListener("click", closeForm);
+  overlay.addEventListener("click", overlayClick);
+
+  startDateInput.addEventListener("change", startDateChange);
+  endDateInput.addEventListener("change", endDateChange);
+
+  addonCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", addonChange);
+  });
+
+  formContainer.addEventListener("submit", formSubmit);
+  returnButton.addEventListener("click", returnButtonClick);
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTomorrowAsMinDate(startDateInput);
+  setTomorrowAsMinDate(endDateInput, true);
+  addEventListeners();
+});
